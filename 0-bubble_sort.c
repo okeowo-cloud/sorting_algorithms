@@ -16,7 +16,7 @@
 void bubble_sort(int *array, size_t size)
 {
 	int swap = 1;
-	size_t i, arr_len;
+	size_t i, arr_len, tmp;
 
 	if (array == NULL || size == 0)
 		return;
@@ -29,7 +29,9 @@ void bubble_sort(int *array, size_t size)
 		{
 			if (array[i - 1] > array[i])
 			{
-				swap_array(array, i);
+				tmp = array[i - 1];
+				array[i - 1] = array[i];
+				array[i] = tmp;
 				swap = 1;
 				print_array(array, size);
 			}

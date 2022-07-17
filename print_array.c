@@ -22,20 +22,3 @@ void print_array(const int *array, size_t size)
 	}
 	printf("\n");
 }
-
-/**
- * swap_array - function swap two integers of an array
- *
- * @a: pointer to an int array.
- * @k: index to swap.
- *
- * return: void
- */
-void swap_array(int *a, size_t k)
-{
-	int tmp;
-
-	tmp = a[k];
-	a[k] = a[k - 1];
-	a[k - 1] = tmp;
-}
