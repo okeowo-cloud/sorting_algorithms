@@ -18,13 +18,13 @@ void counting_sort(int *array, size_t size)
 		if (array[i] > maxElem)
 			maxElem = array[i];
 	}
-	k_array = malloc(sizeof(int) * (maxElem + 1));
-	if (k_array == NULL)
-		return;
 	array1 = malloc(sizeof(int) * size);
 	if (!array1)
+		return;
+	k_array = malloc(sizeof(int) * (maxElem + 1));
+	if (!k_array)
 	{
-		free(k_array);
+		free(array1);
 		return;
 	}
 	for (i = 0; i < (maxElem + 1); i++)
