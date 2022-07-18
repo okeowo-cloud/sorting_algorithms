@@ -6,6 +6,21 @@
 #include "sort.h"
 
 /**
+ * swap_ints - Swap two integers in an array.
+ * @a: The first integer to swap.
+ * @b: The second integer to swap.
+ */
+void swap_ints(int *a, int *b)
+{
+	int tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+
+/**
  * lomuto_partition - partition array based on Lomuto's
  * partiotining algorithm
  *
@@ -18,31 +33,27 @@
  */
 int lomuto_partition(int *array, int start, int end, size_t size)
 {
-	int p, i, p_index, tmp;
+	int *pivot, above, below;
 
-	p = array[end];
-	p_index = start;
-	for (i = start; i < end; i++)
+	pivot = array + end;
+	for (above = below = start; below < end; below++)
 	{
-		if (array[i] <= p)
+		if (array[below] < *pivot)
 		{
-			tmp = array[i];
-			array[i] = array[p_index];
-			array[p_index] = tmp;
-			if (i != p_index)
+			if (above < below)
+			{
+				swap_ints(array + below, array + above);
 				print_array(array, size);
-			p_index++;
+			}
+			above++;
 		}
 	}
-	if (end != p_index)
+	if (array[above] > *pivot)
 	{
-		tmp = array[end];
-		array[end] = array[p_index];
-		array[p_index] = tmp;
+		swap_ints(array + above, pivot);
 		print_array(array, size);
 	}
-
-	return (p_index);
+	return (above);
 }
 
 /**
@@ -56,14 +67,10 @@ int lomuto_partition(int *array, int start, int end, size_t size)
  */
 void quick_sort(int *array, size_t size)
 {
-	int start, end;
-
-	if (!array || size == 0)
+	if (!array || size < 2)
 		return;
 
-	start = 0;
-	end = (int) size - 1;
-	_sort(array, start, end, size);
+	_sort(array, 0, size - 1, size);
 }
 
 /**
