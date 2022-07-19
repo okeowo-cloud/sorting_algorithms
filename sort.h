@@ -5,9 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define UP 0
-#define DOWN 1
-
 /**
  * struct listint_s - Doubly linked list node
  *
@@ -36,7 +33,15 @@ void merge_sort(int *array, size_t size);
 <<<<<<< HEAD
 void shell_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
-void swap_nodes(listint_t **slow, listint_t **fast, listint_t **list);
+int partition(int *array, int start, int end, size_t size);
+void quick(int *array, int start, int end, size_t size);
+void swap_node_ahead(listint_t **list, listint_t **tail, listint_t **shaker);
+void swap_node_behind(listint_t **list, listint_t **tail, listint_t **shaker);
+void merge_subarr(int *subarr, int *buff, size_t front, size_t mid,
+						  size_t back);
+void merge_sort_recursive(int *subarr, int *buff, size_t front, size_t back);
+void quick_sort_hoare(int *array, size_t size);
+void sort_deck(deck_node_t **deck);
 =======
 void heap_sort(int *array, size_t size);
 void radix_sort(int *array, size_t size);
