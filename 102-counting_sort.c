@@ -8,44 +8,43 @@
  */
 void counting_sort(int *array, size_t size)
 {
-	int maxElem = array[0];
-	int *k_array, *array1, i;
+	int i, max;
+	int *count = NULL, *copy = NULL;
+	size_t j, temp, total = 0;
 
 	if (!array || size < 2)
 		return;
-	for (i = 1; i < (int)size; i++)
-	{
-		if (array[i] > maxElem)
-			maxElem = array[i];
-	}
-	array1 = malloc(sizeof(int) * size);
-	if (!array1)
+	copy = malloc(sizeof(int) * size);
+	if (!copy)
 		return;
-	k_array = malloc(sizeof(int) * (maxElem + 1));
-	if (!k_array)
+	for (max = 0, j = 0; j < size; j++)
 	{
-		free(array1);
+		copy[j] = array[j];
+		if (array[j] > max)
+			max = array[j];
+	}
+	count = malloc(sizeof(int) * (max + 1));
+	if (!count)
+	{
+		free(copy);
 		return;
 	}
-	for (i = 0; i < (maxElem + 1); i++)
-		k_array[i] = 0;
-
-	for (i = 0; i < (int)size; i++)
-		k_array[array[i]] += 1;
-
-	for (i = 0; i < (maxElem + 1); i++)
-		k_array[i] += k_array[i - 1];
-
-	print_array(k_array, (size_t)maxElem + 1);
-
-	for (i = 0; i < (int)size; i++)
+	for (i = 0; i <= max; i++)
+		count[i] = 0;
+	for (j = 0; j < size; j++)
+		count[array[j]] += 1;
+	for (i = 0; i <= max; i++)
 	{
-		array1[k_array[array[i]] - 1] = array[i];
-		k_array[array[i]] -= 1;
+		temp = count[i];
+		count[i] = total;
+		total += temp;
 	}
-	for (i = 0; i < (int)size; i++)
-		array[i] = array1[i];
-
-	free(k_array);
-	free(array1);
+	for (j = 0; j < size; j++)
+	{
+		array[count[copy[j]]] = copy[j];
+		count[copy[j]] += 1;
+	}
+	print_array(count, max + 1);
+	free(count);
+	free(copy);
 }
