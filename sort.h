@@ -30,8 +30,22 @@ void quick_sort(int *array, size_t size);
 void selection_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
+<<<<<<< HEAD
+void shell_sort(int *array, size_t size);
+void cocktail_sort_list(listint_t **list);
+int partition(int *array, int start, int end, size_t size);
+void quick(int *array, int start, int end, size_t size);
+void swap_node_ahead(listint_t **list, listint_t **tail, listint_t **shaker);
+void swap_node_behind(listint_t **list, listint_t **tail, listint_t **shaker);
+void merge_subarr(int *subarr, int *buff, size_t front, size_t mid,
+						  size_t back);
+void merge_sort_recursive(int *subarr, int *buff, size_t front, size_t back);
+void quick_sort_hoare(int *array, size_t size);
+void sort_deck(deck_node_t **deck);
+=======
 void heap_sort(int *array, size_t size);
 void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
+>>>>>>> 6d034c24c8bef65f72334d20622873b3bab5b8dc
 
 #endif /* __SORT_H__ */
